@@ -1,11 +1,15 @@
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export const fetchDestinations = async () => {
-  const res = await axios.get('http://localhost:5000/api/destinations');
-  return res.data;
+  const response = await fetch(`${BASE_URL}/destinations`);
+  if (!response.ok) throw new Error("Failed to fetch destinations");
+  return response.json();
 };
 
 export const fetchPackages = async () => {
-  const res = await axios.get('http://localhost:5000/api/packages/top-selling');
-  return res.data;
+  const response = await fetch(`${BASE_URL}/packages/top-selling`);
+  if (!response.ok) throw new Error("Failed to fetch packages");
+  return response.json();
 };
